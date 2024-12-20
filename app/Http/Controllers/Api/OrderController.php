@@ -7,7 +7,6 @@ use App\Domains\Orders\Services\StoreOrderService;
 use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Orders\StoreOrderRequest;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
