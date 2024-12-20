@@ -6,11 +6,12 @@ use App\Domains\Inventories\DTO\InventoryDTO;
 use App\Domains\Inventories\Models\Inventories;
 use App\Domains\Inventories\Services\AddInventoryService;
 use App\Domains\Inventories\Services\IssueInventoryService;
+use App\Domains\Shared\CalculatorService;
 use Mockery;
 
 beforeEach(function () {
-    $this->addInventoryService = new AddInventoryService;
-    $this->issuenventoryService = new IssueInventoryService;
+    $this->addInventoryService = new AddInventoryService(new CalculatorService);
+    $this->issuenventoryService = new IssueInventoryService(new CalculatorService);
 });
 
 test('it updates inventory if exists', function () {
