@@ -9,8 +9,8 @@ use App\Domains\Inventories\Services\IssueInventoryService;
 use Mockery;
 
 beforeEach(function () {
-    $this->addInventoryService = new AddInventoryService();
-    $this->issuenventoryService = new IssueInventoryService();
+    $this->addInventoryService = new AddInventoryService;
+    $this->issuenventoryService = new IssueInventoryService;
 });
 
 test('it updates inventory if exists', function () {
@@ -20,7 +20,7 @@ test('it updates inventory if exists', function () {
 
     $inventoryDTO = InventoryDTO::fromArray([
         'product_id' => 1,
-        'quantity' => 5
+        'quantity' => 5,
     ]);
 
     $expectedInventory = new Inventories([
@@ -45,7 +45,7 @@ test('it creates new inventory if it does not exist', function () {
     $mockInventory = Mockery::mock(Inventories::class)->makePartial();
     $inventoryDTO = InventoryDTO::fromArray([
         'product_id' => 5,
-        'quantity' => 5
+        'quantity' => 5,
     ]);
 
     $expectedInventory = new Inventories([
