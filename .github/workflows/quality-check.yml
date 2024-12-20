@@ -2,9 +2,9 @@ name: Quality Check
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   quality-check:
@@ -34,14 +34,14 @@ jobs:
           git status
         working-directory: /var/www/html
 
-      - name: Setup Composer 
+      - name: Setup Composer
         run: |
           composer install --no-interaction --optimize-autoloader --quiet
         working-directory: /var/www/html
 
       - name: Run Quality Check
         run: |
-          XDEBUG_MODE=coverage vendor/bin/pest --coverage-clover=coverage.xml
-          cp sonar-project.properties.example sonar-project.properties
-          sonar-scanner -Dsonar.login=${{ secrets.SONAR_LOGIN_TOKEN }} -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
+          XDEBUG_MODE=coverage php artisan test --coverage --min=80 --coverage-clover coverage.xml
+           cp sonar-project.properties.example sonar-project.properties
+           sonar-scanner -Dsonar.login=${{ secrets.SONAR_LOGIN_TOKEN }} -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
         working-directory: /var/www/html
