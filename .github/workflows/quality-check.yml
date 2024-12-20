@@ -41,7 +41,7 @@ jobs:
 
       - name: Run Quality Check
         run: |
-          XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage.xml
+          XDEBUG_MODE=coverage vendor/bin/pest --coverage-clover=coverage.xml
           cp sonar-project.properties.example sonar-project.properties
           sonar-scanner -Dsonar.login=${{ secrets.SONAR_LOGIN_TOKEN }} -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
         working-directory: /var/www/html
