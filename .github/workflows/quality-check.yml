@@ -39,6 +39,15 @@ jobs:
           composer install --no-interaction --optimize-autoloader --quiet
         working-directory: /var/www/html
 
+      - name: Setup Laravel
+        run: |
+          cp .env.example .env
+          git status
+          composer install --no-interaction --optimize-autoloader --quiet
+          php artisan key:gen
+          cp .env .env.testing
+        working-directory: /var/www/html
+
       - name: Run Quality Check
         run: |
           XDEBUG_MODE=coverage php artisan test --coverage --min=80 --coverage-clover coverage.xml
