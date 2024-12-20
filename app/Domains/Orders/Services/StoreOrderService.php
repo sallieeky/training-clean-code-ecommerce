@@ -28,6 +28,7 @@ class StoreOrderService
             'quantity' => $dto->quantity,
             'total_price' => $totalPrice,
         ]);
+
         return Orders::create([
             'product_id' => $dto->product_id,
             'quantity' => $dto->quantity,

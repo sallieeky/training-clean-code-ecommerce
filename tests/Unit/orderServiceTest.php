@@ -19,7 +19,7 @@ test('it can store new order', function () {
     $orderDTO = OrderDTO::fromArray([
         'user_id' => 1,
         'product_id' => 1,
-        'quantity' => 10
+        'quantity' => 10,
     ]);
 
     $expectedInventory = $mockOrder;

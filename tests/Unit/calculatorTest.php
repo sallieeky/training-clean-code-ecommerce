@@ -34,5 +34,5 @@ test('it_divide_by_zero_successfully', function () {
     $calculator = new CalculatorService;
     $result = $calculator->divide(6, 0);
 
-    expect("Unidentified")->toEqual($result);
+    expect('Unidentified')->toEqual($result);
 });
