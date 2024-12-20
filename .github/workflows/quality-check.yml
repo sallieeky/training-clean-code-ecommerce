@@ -2,9 +2,9 @@ name: Quality Check
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   quality-check:
@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Clone Repository
-        run: cd /var/www && rm -rf html && git clone https://github.com/ilham98/clean-code-calculator.git html && cd html && ls
+        run: cd /var/www && rm -rf html && git clone https://github.com/trihandhoko/training-clean-code-ecommerce.git html && cd html && ls
 
       - name: Verify Clone
         run: |
@@ -34,14 +34,23 @@ jobs:
           git status
         working-directory: /var/www/html
 
-      - name: Setup Composer 
+      - name: Setup Composer
         run: |
           composer install --no-interaction --optimize-autoloader --quiet
         working-directory: /var/www/html
 
+      - name: Setup Laravel
+        run: |
+          cp .env.example .env
+          git status
+          composer install --no-interaction --optimize-autoloader --quiet
+          php artisan key:gen
+          cp .env .env.testing
+        working-directory: /var/www/html
+
       - name: Run Quality Check
         run: |
-          XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage.xml
-          cp sonar-project.properties.example sonar-project.properties
-          sonar-scanner -Dsonar.login=${{ secrets.SONAR_LOGIN_TOKEN }} -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
+           XDEBUG_MODE=coverage php artisan test --coverage --coverage-clover coverage.xml
+           cp sonar-project.properties.example sonar-project.properties
+           sonar-scanner -Dsonar.login=${{ secrets.SONAR_LOGIN_TOKEN }} -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
         working-directory: /var/www/html

@@ -4,13 +4,13 @@ namespace App\Domains\Orders\DTO;
 
 class OrderDTO
 {
-    public int $product_id;
+    public int $productId;
 
     public int $quantity;
 
-    public function __construct(int $product_id, int $quantity)
+    public function __construct(int $productId, int $quantity)
     {
-        $this->product_id = $product_id;
+        $this->productId = $productId;
         $this->quantity = $quantity;
     }
 
@@ -25,7 +25,7 @@ class OrderDTO
     public function toArray(): array
     {
         return [
-            'product_id' => $this->product_id,
+            'product_id' => $this->productId,
             'quantity' => $this->quantity,
         ];
     }
