@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\Domains\Products\Services\GetProductService;
-use App\Domains\Orders\Services\StoreOrderService;
 use App\Domains\Orders\DTO\OrderDTO;
+use App\Domains\Orders\Services\StoreOrderService;
+use App\Domains\Products\Services\GetProductService;
+use Illuminate\Console\Command;
 
 class OrderCommand extends Command
 {
@@ -24,17 +24,16 @@ class OrderCommand extends Command
     protected $description = 'Create an order for a product';
 
     protected $getProductService;
+
     protected $storeOrderService;
 
     /**
      * Execute the console command.
      */
-
     public function __construct(
         GetProductService $getProductService,
         StoreOrderService $storeOrderService
-    )
-    {
+    ) {
         parent::__construct();
         $this->getProductService = $getProductService;
         $this->storeOrderService = $storeOrderService;
@@ -54,7 +53,7 @@ class OrderCommand extends Command
                 'quantity' => $quantity,
             ]));
 
-            $this->info("Order created successfully!");
+            $this->info('Order created successfully!');
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
@@ -71,5 +70,4 @@ class OrderCommand extends Command
             $this->table(['ID', 'Name', 'Price', 'Description'], $products->toArray());
         }
     }
-
 }
