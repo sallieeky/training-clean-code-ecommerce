@@ -10,6 +10,9 @@ beforeEach(function () {
     $this->storeOrderService = new StoreOrderService(new CalculatorService);
 });
 
+/**
+ * @covers \App\Services\StoreOrderService
+ */
 test('it can store new order', function () {
     $mockOrder = Mockery::mock(Orders::class)->makePartial();
     $mockOrder->user_id = 1;
