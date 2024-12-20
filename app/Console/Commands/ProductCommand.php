@@ -100,7 +100,11 @@ class ProductCommand extends Command
         $product = $this->getProductService->getProductById($id);
 
         if ($product) {
-            $this->info("Product Found:\nID: {$product->id}\nName: {$product->name}\nPrice: {$product->price}\nDescription: {$product->description}");
+            $this->info("Product Found:
+                \nID: {$product->id}
+                \nName: {$product->name}
+                \nPrice: {$product->price}
+                \nDescription: {$product->description}");
         } else {
             $this->error('Product not found.');
         }

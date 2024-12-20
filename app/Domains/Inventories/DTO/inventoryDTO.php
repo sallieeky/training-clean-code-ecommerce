@@ -4,13 +4,13 @@ namespace App\Domains\Inventories\DTO;
 
 class InventoryDTO
 {
-    public string $product_id;
+    public string $productId;
 
     public string $quantity;
 
-    public function __construct(string $product_id, int $quantity)
+    public function __construct(string $productId, int $quantity)
     {
-        $this->product_id = $product_id;
+        $this->productId = $productId;
         $this->quantity = $quantity;
     }
 
@@ -25,7 +25,7 @@ class InventoryDTO
     public function toArray(): array
     {
         return [
-            'product_id' => $this->product_id,
+            'product_id' => $this->productId,
             'quantity' => $this->quantity,
         ];
     }

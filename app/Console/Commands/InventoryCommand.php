@@ -70,11 +70,11 @@ class InventoryCommand extends Command
 
     private function addInventory()
     {
-        $product_id = $this->ask('Enter product id');
+        $productId = $this->ask('Enter product id');
         $qty = $this->ask('Enter quantity');
 
         $data = $this->addInventoryService->create(InventoryDTO::fromArray([
-            'product_id' => $product_id,
+            'product_id' => $productId,
             'quantity' => $qty,
         ]));
 
